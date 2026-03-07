@@ -28,6 +28,9 @@ printf("%d   ", slow);
         fast = sum_squared_digits(sum_squared_digits(fast));
 
 printf("%d\n", fast);
+
+if(slow == fast)
+printf("\n");
     }
 
     if (fast == 1) {

@@ -25,8 +25,8 @@ int main() {
     while (1) {
         slow = sum_squared_digits(slow);
 printf("%d   ", slow);
-        fast = sum_squared_digits(sum_squared_digits(fast));
 
+        fast = sum_squared_digits(sum_squared_digits(fast));
 printf("%d\n", fast);
 
 if(slow == fast)

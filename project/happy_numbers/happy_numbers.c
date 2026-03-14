@@ -17,9 +17,24 @@ int sum_squared_digits(int n) {
 int main() {
     
 
-    int number = 19;
+    int number = 17;
+int total= number, n=number;
 
-    int slow = number;
+while(total>9){
+total =0;
+total = sum_squared_digits(n);
+n=total;
+printf("%d\n",total);
+}
+
+if(total==1 || total==7){
+printf("\n%d Happy number", number);
+}else{
+printf("\n%d Not a happy number", number);
+}
+
+
+    /*int slow = number;
     int fast = number;
 
     while (1) {
@@ -37,7 +52,7 @@ printf("\n");
         printf("CONGRATULATION, %d IS A HAPPY NUMBER!\n", number);
     } else {
         printf("SORRY, %d IS NOT A HAPPY NUMBER.\n", number);
-    }
+    }*/
 
     return 0;
 }

@@ -106,12 +106,16 @@ int minimax(char grid[3][3], char player)
                 if (grid[i][j] == ' ') {
                     grid[i][j] = 'O';
                     int val = minimax(grid, 'X');
+printf("(O)val:%d(%d)\n",val,i * 3 + j + 1);
+
                     grid[i][j] = ' ';
                     if (val > best_val) 
                         best_val = val;
                 }
             }
         }
+
+printf("(O)best_val:%d(%d)\n",best_val,i * 3 + j + 1);
         return best_val;
     } else {
         int best_val = INT_MAX;
@@ -120,34 +124,42 @@ int minimax(char grid[3][3], char player)
                 if (grid[i][j] == ' ') {
                     grid[i][j] = 'X';
                     int val = minimax(grid, 'O');
+printf("(X)val%d(%d)",val,i * 3 + j + 1);
+
                     grid[i][j] = ' ';
                     if (val < best_val) 
                         best_val = val;
                 }
             }
         }
+
+printf("(X)best_val:%d(%d)\n",best_val,i * 3 + j + 1);
         return best_val;
     }
 }
 
-int findBestMove(char grid[3][3]) {
+int findInvincibleMove(char grid[3][3]) {
     int best_val = -INT_MAX;
-    int best_move = -1;
+    int invincible_move = -1;
 
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
             if (grid[i][j] == ' ') {
                 grid[i][j] = 'O';
                 int move_val = minimax(grid, 'X');
+printf("move_val:%d(%d)",move_val,i * 3 + j + 1);
+
                 grid[i][j] = ' ';
                 if (move_val > best_val) {
                     best_val = move_val;
-                    best_move = i * 3 + j;
+                    invincible_move = i * 3 + j + 1;
                 }
             }
         }
     }
-    return best_move;
+
+printf("invincible_move:%d(%d)\n",best_val,i * 3 + j + 1);
+    return invincible_move;
 }
 
 int main()
@@ -196,9 +208,9 @@ int main()
             break;
         }
 
-        int pc_move = findBestMove(grid);
-        row = pc_move / 3;
-        col = pc_move % 3;
+        int pc_move = findInvincibleMove(grid);
+        row = (pc_move - 1) / 3;
+        col = (pc_move - 1) % 3;
         grid[row][col] = 'O';
 
         print(grid);

@@ -101,6 +101,8 @@ int minimax(char grid[3][3], char player)
 
     if (player == 'O') {
         int best_val = -INT_MAX;
+int bestMove=-1;
+
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 if (grid[i][j] == ' ') {
@@ -111,14 +113,19 @@ printf("(O)val:%d(%d)\n",val,i * 3 + j + 1);
                     grid[i][j] = ' ';
                     if (val > best_val) 
                         best_val = val;
+bestMove=3*i+j+1;
+
                 }
             }
         }
 
-printf("(O)best_val:%d(%d)\n",best_val,i * 3 + j + 1);
-        return best_val;
+printf("(O)best_val:%d(%d)\n",best_val,bestMove);
+
+return best_val;
     } else {
         int best_val = INT_MAX;
+int bestMove;
+
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 if (grid[i][j] == ' ') {
@@ -129,18 +136,20 @@ printf("(X)val%d(%d)",val,i * 3 + j + 1);
                     grid[i][j] = ' ';
                     if (val < best_val) 
                         best_val = val;
+bestMove=3*i+j+1;
                 }
             }
         }
 
-printf("(X)best_val:%d(%d)\n",best_val,i * 3 + j + 1);
-        return best_val;
+printf("(X)best_val:%d(%d)\n",best_val,bestMove);
+
+return best_val;
     }
 }
 
 int findInvincibleMove(char grid[3][3]) {
     int best_val = -INT_MAX;
-    int invincible_move = -1;
+    int invincibleMove = -1;
 
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
@@ -152,14 +161,15 @@ printf("move_val:%d(%d)",move_val,i * 3 + j + 1);
                 grid[i][j] = ' ';
                 if (move_val > best_val) {
                     best_val = move_val;
-                    invincible_move = i * 3 + j + 1;
+                    invincibleMove = i * 3 + j + 1;
                 }
             }
         }
     }
 
-printf("invincible_move:%d(%d)\n",best_val,i * 3 + j + 1);
-    return invincible_move;
+printf("invincible_move:%d(%d)\n",best_val,invincibleMove);
+    
+return invincibleMove;
 }
 
 int main()
